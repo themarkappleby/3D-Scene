@@ -4,7 +4,7 @@ var scene, camera, renderer
 
 function init () {
   scene = new THREE.Scene()
-  camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 45, 30000)
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 30000)
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
@@ -17,12 +17,12 @@ function init () {
   controls.maxDistance = 1500
 
   const materialArray = []
-  const textureFt = new THREE.TextureLoader().load('assets/arid2_ft.jpg')
-  const textureBk = new THREE.TextureLoader().load('assets/arid2_bk.jpg')
-  const textureUp = new THREE.TextureLoader().load('assets/arid2_up.jpg')
-  const textureDn = new THREE.TextureLoader().load('assets/arid2_dn.jpg')
-  const textureRt = new THREE.TextureLoader().load('assets/arid2_rt.jpg')
-  const textureLf = new THREE.TextureLoader().load('assets/arid2_lf.jpg')
+  const textureFt = new THREE.TextureLoader().load('assets/barren_ft.jpg')
+  const textureBk = new THREE.TextureLoader().load('assets/barren_bk.jpg')
+  const textureUp = new THREE.TextureLoader().load('assets/barren_up.jpg')
+  const textureDn = new THREE.TextureLoader().load('assets/barren_dn.jpg')
+  const textureRt = new THREE.TextureLoader().load('assets/barren_rt.jpg')
+  const textureLf = new THREE.TextureLoader().load('assets/barren_lf.jpg')
 
   materialArray.push(new THREE.MeshBasicMaterial({ map: textureFt }))
   materialArray.push(new THREE.MeshBasicMaterial({ map: textureBk }))
