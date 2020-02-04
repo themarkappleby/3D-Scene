@@ -1,15 +1,22 @@
 /* global window THREE */
 
-var scene, camera, renderer
+var scene, camera, renderer, controls
 
 function init () {
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 30000)
+  camera.position.set(0, 0, 100)
+  camera.rotation.set(0, -4.72, 0)
+
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
 
-  const controls = new THREE.OrbitControls(camera, renderer.domElement)
+  controls = new THREE.OrbitControls(camera, renderer.domElement)
+  controls.enableDamping = true
+  controls.dampingFactor = 0.05
+  controls.rotateSpeed = 0.1
+  controls.update()
   controls.addEventListener('change', () => {
     renderer.render(scene, camera)
   })
@@ -37,12 +44,14 @@ function init () {
 
   const skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000)
   const skybox = new THREE.Mesh(skyboxGeo, materialArray)
+  scene.add(camera)
   scene.add(skybox)
 
   animate()
 }
 
 function animate () {
+  controls.update()
   renderer.render(scene, camera)
   window.requestAnimationFrame(animate)
 }
